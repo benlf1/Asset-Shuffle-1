@@ -11,4 +11,6 @@ Our first Asset Shuffle consists of the following assets:
 
 The preset code has basic movement for a lone spaceship.
 
+The pack was built in Unity version **2019.4.21f1 (LTS)**.
+
 Have fun!
