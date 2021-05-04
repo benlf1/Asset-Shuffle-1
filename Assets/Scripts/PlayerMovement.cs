@@ -34,4 +34,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position += (Vector3)velocity;
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        this.gameObject.SetActive(false);
+    }
 }
