@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
+    public GameObject bullet;
+    public Vector3 bulletOffset;
+    public float attackCooldown;
+    float nextAttackTime;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +36,20 @@ public class PlayerMovement : MonoBehaviour
         // Add the velocity vector to the current position
         //  to move the player
         transform.position += (Vector3)velocity;
+
+        if (Input.GetButton("Fire1")) {
+            if (Time.time >= nextAttackTime) {
+                GameObject b = Instantiate(bullet, this.gameObject.transform.position + bulletOffset, Quaternion.identity);
+                b.tag = "Player";
+                nextAttackTime = Time.time + attackCooldown;
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        this.gameObject.SetActive(false);
+        if (col.tag != "Player") {
+            this.gameObject.SetActive(false);
+        }
     }
 }
